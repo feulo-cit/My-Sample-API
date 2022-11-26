@@ -1,11 +1,11 @@
 #/bin/bash
 
 echo "API Simple HTTP Test"
-echo "Waiting 15 seconds to Deploy Finish"
-sleep 15
-
+#echo "Waiting 15 seconds to Deploy Finish"
+#sleep 15
+BASE_URL=https://api-service-feulo-cit.cloud.okteto.net
 # Test: Redness
-URL=https://api-service-brunobotelhobr.cloud.okteto.net/ready
+URL="${BASE_URL}/ready"
 STATUSCODE=$(curl -s -o /dev/null -w "%{http_code}" -X GET $URL -H  "accept: application/json")
 if test $STATUSCODE != 200; then
     exit 1
@@ -14,7 +14,7 @@ fi
 echo $URL " | HTTP Code: " $STATUSCODE " | Test Status Pass"
 
 # Test: Temperature Conversion 
-URL=https://api-service-brunobotelhobr.cloud.okteto.net/celsius/10/fahrenheit
+URL="${BASE_URL}/celsius/10/fahrenheit"
 STATUSCODE=$(curl -s -o /dev/null -w "%{http_code}" -X GET $URL -H  "accept: application/json")
 if test $STATUSCODE != 200; then
     exit 1
@@ -22,7 +22,7 @@ if test $STATUSCODE != 200; then
 fi
 echo $URL " | HTTP Code: " $STATUSCODE " | Test Status Pass"
 
-URL=https://api-service-brunobotelhobr.cloud.okteto.net/fahrenheit/10/celsius
+URL="${BASE_URL}/fahrenheit/10/celsius"
 STATUSCODE=$(curl -s -o /dev/null -w "%{http_code}" -X GET $URL -H  "accept: application/json")
 if test $STATUSCODE != 200; then
     exit 1
