@@ -1,7 +1,7 @@
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  CI:
+  CI: 
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -25,8 +25,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            brunobotelhobr/api_conversao:${{ github.run_number }}
-            brunobotelhobr/api_conversao:latest
+            feulocit/api_conversao:${{ github.run_number }}
+            feulocit/api_conversao:latest
 
   CD:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       - name: Download Code
         uses: actions/checkout@v2
 
-      - name: Sleep for 45s
+      - name: Sleep for 30s
         uses: juliangruber/sleep-action@v1
         with:
           time: 30s
