@@ -85,3 +85,12 @@ jobs:
 
       - name: QA tests
         run: chmod +x test/qa.sh; test/qa.sh
+
+      - name: DAST
+        uses: zaproxy/action-api-scan@v0.1.0
+        with:
+          target: https://api-service-brunobotelhobr.cloud.okteto.net/openapi.yaml
+          format: openapi
+          rules_file_name: .zap_ignore
+          cmd_options: "-a"
+          fail_action: true
